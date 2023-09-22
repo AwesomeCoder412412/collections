@@ -1,8 +1,8 @@
 /**
- * Write a description of class MyQueue here.
+ * An implementation of a queue, an ADT
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Jack Segil
+ * @version 1.0
  */
 public class MyQueue
 {
@@ -27,8 +27,7 @@ public class MyQueue
             return;
         }
         size++;
-        backIndex++;
-        backIndex = backIndex % array.length;
+        backIndex = (backIndex + 1) % array.length;
         array[backIndex] = element;
     }
     
@@ -47,6 +46,9 @@ public class MyQueue
     }
     
     public int front() {
+        if (isEmpty()) {
+            return 0;
+        }
         return array[frontIndex];
     }
     
@@ -60,7 +62,10 @@ public class MyQueue
     
     public String toString() {
         String result = "";
-        for (int i = frontIndex; i <= frontIndex + size; i++) {
+        if (size == 0) {
+            return result;
+        }
+        for (int i = frontIndex; i < frontIndex + size; i++) {
             if (i % array.length == backIndex) {
                 result = result + array[i % array.length];
             }

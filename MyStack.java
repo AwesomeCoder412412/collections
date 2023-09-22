@@ -1,8 +1,8 @@
 /**
- * Write a description of class MyStack here.
+ * An implementation of a stack, an ADT
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Jack Segil
+ * @version 1.0
  */
 public class MyStack
 {
