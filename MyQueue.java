@@ -1,12 +1,12 @@
 /**
  * An implementation of a queue, an ADT
  *
- * @Jack Segil
+ * @author Jack Segil
  * @version 1.0
  */
-public class MyQueue
+public class MyQueue<E>
 {
-    private int[] array;
+    private E[] array;
     private int frontIndex;
     private int backIndex;
     private int size;
@@ -14,52 +14,91 @@ public class MyQueue
     /**
      * Constructor for objects of class MyQueue
      */
-    public MyQueue(int length)
+    public MyQueue()
     {
-        array = new int[length];
+        array = (E[]) new Object[5];
         frontIndex = 0;
         backIndex = -1;
         size = 0;
     }
     
-    public void enqueue(int element) {
+    /**
+     * Adds an element to the back of the queue
+     *
+     * @param element The element to add to the back of the queue
+     */
+    public void enqueue(E element) throws IndexOutOfBoundsException {
         if (isFull()) {
-            return;
+            throw new IndexOutOfBoundsException(); 
+        } else {
+            size++;
+            backIndex = (backIndex + 1) % array.length;
+            array[backIndex] = element;
         }
-        size++;
-        backIndex = (backIndex + 1) % array.length;
-        array[backIndex] = element;
     }
     
-    public int dequeue() {
+    /**
+     * Removes an element from the front of the queue
+     *
+     * @return The element at the front of the queue
+     */
+    public E dequeue() throws IndexOutOfBoundsException {
         if (isEmpty()) {
-            return 0;
+            throw new IndexOutOfBoundsException(); 
+        } else {
+            size--;
+            E temp = array[frontIndex];
+            array[frontIndex] = null;
+            frontIndex++;
+            return temp;
         }
-        size--;
-        int temp = array[frontIndex];
-        frontIndex++;
-        return temp;
     }
     
+    /**
+     * Indicates whether the queue contains any elements
+     *
+     * @return Whether the queue contains any elements
+     */
     public boolean isEmpty() {
-        return size <= 0;
+        return size == 0;
     }
     
-    public int front() {
+    /**
+     * Reads the element at the front of the queue
+     *
+     * @return The element at the front of the queue
+     */
+    public E front() throws IndexOutOfBoundsException {
         if (isEmpty()) {
-            return 0;
+            throw new IndexOutOfBoundsException(); 
+        } else {
+            return array[frontIndex];
         }
-        return array[frontIndex];
     }
     
+    /**
+     * Returns the number of elements stored in the queue
+     *
+     * @return The number of elements stored in the queue
+     */
     public int size() {
         return size;
     }
     
+    /**
+     * Indicates whether the queue has exhausted its available storage
+     *
+     * @return Whether the queue has exhausted its available storage
+     */
     public boolean isFull() {
-        return size() >= array.length;
+        return size() == array.length;
     }
     
+    /**
+     * Returns the contents of the queue from front to back
+     *
+     * @return The contents of the queue from front to back
+     */
     public String toString() {
         String result = "";
         if (size == 0) {
