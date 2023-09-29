@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 /**
  * An implementation of a stack, an ADT
  *
@@ -37,9 +38,9 @@ public class MyStack<E>
      *
      * @return Element on the top of the stack
      */
-    public E pop() throws IndexOutOfBoundsException {
+    public E pop() throws EmptyStackException{
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException(); 
+            throw new EmptyStackException(); 
         } else {
             size--;
             E temp = array[size];
@@ -62,9 +63,9 @@ public class MyStack<E>
      *
      * @return Element on the top of the stack
      */
-    public E top() throws IndexOutOfBoundsException {
+    public E top() throws EmptyStackException {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException(); 
+            throw new EmptyStackException(); 
         } 
         else {
             return array[size - 1];

@@ -1,4 +1,5 @@
-
+import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 /**
  * Write a description of class Test here.
  *
@@ -7,8 +8,28 @@
  */
 public class Test
 {
+    public static void testOtherThings() {
+        MyLinkedList list = new MyLinkedList();
+        list.addHead(3);
+        list.addHead(4);
+        list.addHead(5);
+        list.addHead(3);
+        System.out.println(list.toString());
+        if (list.removeHead() != 3) {
+            System.out.println("Failed removeHead");
+        }
+        if (!list.toString().equals("5, 4, 3")) {
+            System.out.println("Failed removeHead " + list.toString());
+        }
+    }
+    
     public static void testAll() {
         MyStack<Integer> stack = new MyStack();
+        // try {
+            // stack.pop();
+        // } catch (EmptyStackException e){
+            // System.out.println("Tried to pop from an empty stack");
+        // }
         if (!stack.isEmpty()){
             System.out.println("Failed isEmpty");
         }

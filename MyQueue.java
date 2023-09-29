@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 /**
  * An implementation of a queue, an ADT
  *
@@ -42,9 +43,9 @@ public class MyQueue<E>
      *
      * @return The element at the front of the queue
      */
-    public E dequeue() throws IndexOutOfBoundsException {
+    public E dequeue() throws NoSuchElementException {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException(); 
+            throw new NoSuchElementException(); 
         } else {
             size--;
             E temp = array[frontIndex];
@@ -68,9 +69,9 @@ public class MyQueue<E>
      *
      * @return The element at the front of the queue
      */
-    public E front() throws IndexOutOfBoundsException {
+    public E front() throws NoSuchElementException {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException(); 
+            throw new NoSuchElementException(); 
         } else {
             return array[frontIndex];
         }
