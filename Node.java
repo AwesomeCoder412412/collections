@@ -1,32 +1,47 @@
 
 /**
- * Write a description of class Node here.
+ * Implements a node for use in a linked list.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jack Segil
+ * @version 1.0
  */
-public class Node
+public class Node<E>
 {
-    private int data;
-    private Node next;
+    private E data;
+    private Node<E> next;
     /**
      * Constructor for objects of class Node
      */
-    public Node(int dataToStore)
+    public Node(E dataToStore)
     {
         data = dataToStore;
         next = null;
     }
     
+    /**
+     * Sets the node that this node points to.
+     *
+     * @param nextNode the next node in the list
+     */
     public void setNext(Node nextNode) {
         next = nextNode;
     }
     
-    public int getData() {
+    /**
+     * Returns the data stored in this node
+     *
+     * @return The data stored in this node
+     */
+    public E getData() {
         return data;
     }
     
-    public Node getNext() {
+    /**
+     * Returns the next node in the list
+     *
+     * @return The next node in the list
+     */
+    public Node<E> getNext() {
         return next;
     }
 

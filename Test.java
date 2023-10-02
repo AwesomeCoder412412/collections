@@ -1,25 +1,35 @@
 import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 /**
- * Write a description of class Test here.
+ * Houses test methods for various data structures
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jack Segil
+ * @version 1.0
  */
 public class Test
 {
     public static void testOtherThings() {
-        MyLinkedList list = new MyLinkedList();
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+        if (!list.isEmpty()) {
+            System.out.println("Failed isEmpty");
+        }
         list.addHead(3);
         list.addHead(4);
         list.addHead(5);
         list.addHead(3);
         System.out.println(list.toString());
+        if (list.getHead() != 3) {
+            System.out.println("Failed getHead");
+        }
         if (list.removeHead() != 3) {
             System.out.println("Failed removeHead");
         }
         if (!list.toString().equals("5, 4, 3")) {
             System.out.println("Failed removeHead " + list.toString());
+        }
+        list.addTail(2);
+        if (!list.toString().equals("5, 4, 3, 2")) {
+            System.out.println("Failed addTail " + list.toString());
         }
     }
     
