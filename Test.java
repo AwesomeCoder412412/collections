@@ -33,8 +33,65 @@ public class Test
         }
     }
     
+    public static void testLL() {
+        MyStackLL<Integer> stack = new MyStackLL<Integer>();
+        try {
+            stack.pop();
+        } catch (NoSuchElementException e){
+            System.out.println("Tried to pop from an empty stack");
+        }
+        try {
+            stack.top();
+        } catch (NoSuchElementException e){
+            System.out.println("Tried to top from an empty stack");
+        }
+        if (!stack.isEmpty()){
+            System.out.println("Failed isEmpty");
+        }
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        stack.push(5);
+
+        if (stack.size() != 5){
+            System.out.println("Failed size");
+        }
+        if (stack.top() != 5){
+            System.out.println("Failed top");
+        }
+        if (stack.pop() != 5){
+            System.out.println("Failed pop");
+        }
+        if (!stack.toString().equals("4, 3, 2, 1")) {
+            System.out.println("Failed toString " + stack.toString());
+        }
+        
+        MyQueueLL<Integer> queue = new MyQueueLL<Integer>();
+        if (!queue.isEmpty()){
+            System.out.println("Failed isEmpty");
+        }
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+        if (queue.size() != 5){
+            System.out.println("Failed size");
+        }
+        if (queue.front() != 1){
+            System.out.println("Failed front");
+        }
+        if (queue.dequeue() != 1){
+            System.out.println("Failed dequeue");
+        }
+        if (!queue.toString().equals("2, 3, 4, 5")) {
+            System.out.println("Failed toString " + queue.toString());
+        }
+    }
+    
     public static void testAll() {
-        MyStack<Integer> stack = new MyStack();
+        MyStack<Integer> stack = new MyStack<Integer>();
         // try {
             // stack.pop();
         // } catch (EmptyStackException e){
@@ -64,7 +121,7 @@ public class Test
             System.out.println("Failed toString " + stack.toString());
         }
         
-        MyQueue<Integer> queue = new MyQueue();
+        MyQueue<Integer> queue = new MyQueue<Integer>();
         if (!queue.isEmpty()){
             System.out.println("Failed isEmpty");
         }

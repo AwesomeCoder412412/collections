@@ -19,31 +19,66 @@ public class MyLinkedList<E>
         //tail = null;
         size = 0;
     }
-    
+
     /**
-     * Adds a node before the head of the list, becoming the new head
+     * Adds element to start of list.
      *
-     * @param element Node to become head of the list
+     * @param element element to be added
      */
     public void addHead(E element) {
         size++;
+        
         Node<E> newNode = new Node<E>(element);
         newNode.setNext(head);
         head = newNode;
         // if (size == 1) {
-            // tail = newNode;
+        // tail = newNode;
         // }
     }
-    
+
     /**
-     * Adds a node after the tail of the list, becoming the new tail
+     * Removes head element of list.
      *
-     * @param element Node to become tail of the list
+     * @return head element
+     * 
+     * @throw NoSuchElementException if list is empty
+     */
+    public E removeHead() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        
+        size--;
+        Node<E> temp = head;
+        head = head.getNext();
+        temp.setNext(null);
+        return temp.getData();
+    }
+
+    /**
+     * Returns value of head of list.
+     *
+     * @return value of head of list
+     * 
+     * @throw NoSuchElementException if list is empty
+     */
+    public E getHead() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return head.getData();
+    }
+
+    /**
+     * Adds element at end of list.
+     *
+     * @param element element to be added
      */
     public void addTail(E element) {
         size++;
         Node<E> newNode = new Node<E>(element);
         Node<E> currNode = head;
+        
         if (!isEmpty()) {
             while (currNode.getNext() != null) {
                 currNode = currNode.getNext();
@@ -52,71 +87,46 @@ public class MyLinkedList<E>
         } else {
             head = newNode;
         }
-        
-        
+
         //tail.setNext(newNode);
         //tail = newNode;
     }
-    
+
     /**
-     * Returns the value of the head of the list
+     * Returns size of list.
      *
-     * @return The value of the head of the list
-     */
-    public E getHead() throws NoSuchElementException {
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
-        return head.getData();
-    }
-    
-    /**
-     * Returns if the list is empty or not
-     *
-     * @return If the list is empty or not
-     */
-    public boolean isEmpty() {
-        return head == null;
-    }
-    
-    /**
-     * Returns the size of the list
-     *
-     * @return The size of the list
+     * @return size of list
      */
     public int size() {
         return size;
     }
-    
+
     /**
-     * Removes the head node of the list
+     * Returns if list is empty.
      *
-     * @return The head node of the list
+     * @return true if list is empty
      */
-    public E removeHead() throws NoSuchElementException {
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
-        size--;
-        Node<E> temp = head;
-        head = head.getNext();
-        temp.setNext(null);
-        return temp.getData();
+    public boolean isEmpty() {
+        return head == null;
     }
-    
+
     /**
-     * Returns the list from head to tail
+     * Returns list from head to tail.
      *
-     * @return The list from head to tail
+     * @return list from head to tail
      */
     public String toString() {
         String result = "";
+        
         if (isEmpty()) {
             return result;
         }
+        
+        //Don't print comma with first node
         Node<E> currNode = head;
         result = result + currNode.getData();
         currNode = currNode.getNext();
+        
         while (currNode != null) {
             result = result + ", " + currNode.getData();
             currNode = currNode.getNext();
