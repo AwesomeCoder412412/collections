@@ -8,6 +8,15 @@ import java.util.NoSuchElementException;
  */
 public class Test
 {
+    public static void testIsBalanced() {
+        if (!isBalanced("({[]})")) {
+            System.out.println("Failed valid string");
+        }
+        if (isBalanced("({[})")) {
+            System.out.println("Failed invalid string");
+        }
+    }
+    
     public static boolean isBalanced(String input) {
         MyStackLL<String> stack = new MyStackLL<String>();
         String openChars = "({[";
@@ -26,11 +35,20 @@ public class Test
     
     public static void reverse() {
         MyQueueLL<Integer> queue = new MyQueueLL<Integer>();
+        MyStackLL<Integer> stack = new MyStackLL<Integer>();
         queue.enqueue(1);
         queue.enqueue(2);
         queue.enqueue(3);
         queue.enqueue(4);
         queue.enqueue(5);
+        System.out.println(queue.toString());
+        for (int i = 0; i < 5; i++) {
+            stack.push(queue.dequeue());
+        }
+        for (int i = 0; i < 5; i++) {
+            queue.enqueue(stack.pop());
+        }
+        System.out.println(queue.toString());
     }
     
     public static void testOtherThings() {
