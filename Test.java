@@ -8,6 +8,31 @@ import java.util.NoSuchElementException;
  */
 public class Test
 {
+    public static boolean isBalanced(String input) {
+        MyStackLL<String> stack = new MyStackLL<String>();
+        String openChars = "({[";
+        String closeChars = ")}]";
+        for (int i = 0; i < input.length(); i++) {
+            if (openChars.indexOf(input.substring(i, i + 1)) != -1) {
+                stack.push(input.substring(i, i + 1));
+            } else if (openChars.indexOf(stack.top()) == closeChars.indexOf((input.substring(i, i + 1)))) {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void reverse() {
+        MyQueueLL<Integer> queue = new MyQueueLL<Integer>();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+    }
+    
     public static void testOtherThings() {
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         if (!list.isEmpty()) {
