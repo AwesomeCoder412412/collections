@@ -1,5 +1,6 @@
 import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
+import java.util.*;
 /**
  * Houses test methods for various data structures
  *
@@ -8,6 +9,12 @@ import java.util.NoSuchElementException;
  */
 public class Test
 {
+    public static void testArrayList() {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        arrayList.add(3);
+        arrayList.remove(0);
+    }
+    
     public static void testIsBalanced() {
         if (!isBalanced("({[]})")) {
             System.out.println("Failed valid string");
@@ -77,6 +84,14 @@ public class Test
     }
     
     public static void testLL() {
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+        list.addHead(1);
+        list.addHead(2);
+        list.remove(1);
+        if (list.get(1) != 2) {
+           System.out.println("Failed get " + list.get(1));
+        }
+        
         MyStackLL<Integer> stack = new MyStackLL<Integer>();
         try {
             stack.pop();

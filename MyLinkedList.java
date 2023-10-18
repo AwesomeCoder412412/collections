@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 public class MyLinkedList<E>
 {
     private Node<E> head;
-    //private Node<E> tail;
+    private Node<E> tail;
     private int size;
     /**
      * Constructor for objects of class MyLinkedList
@@ -16,9 +16,43 @@ public class MyLinkedList<E>
     public MyLinkedList()
     {
         head = null;
-        //tail = null;
+        tail = null;
         size = 0;
     }
+    
+    public E get(int index) throws NoSuchElementException{
+        Node<E> toReturn = head;
+        
+        if (index >= size || index < 0) {
+            throw new NoSuchElementException();
+        }
+        for (int i = 0; i < index; i++) {
+            toReturn = toReturn.getNext();
+        }
+        return toReturn.getData();
+    }
+    
+    public E remove(int index) throws NoSuchElementException{
+        Node<E> currNode = head;
+        
+        if (index >= size || index < 0) {
+            throw new NoSuchElementException();
+        }
+        for (int i = 0; i < index - 1; i++) {
+            currNode = currNode.getNext();
+        }
+        
+        Node<E> next = currNode.getNext();
+        currNode.setNext(next.getNext());
+        next.setData(null);
+        next.setNext(null);
+        if (size == 1) {
+            tail = currNode;
+            head = currNode;
+        }
+        return next.getData();
+    }
+
 
     /**
      * Adds element to start of list.
@@ -31,9 +65,9 @@ public class MyLinkedList<E>
         Node<E> newNode = new Node<E>(element);
         newNode.setNext(head);
         head = newNode;
-        // if (size == 1) {
-        // tail = newNode;
-        // }
+        if (size == 1) {
+            tail = newNode;
+        }
     }
 
     /**
@@ -47,7 +81,9 @@ public class MyLinkedList<E>
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        
+        if (size == 1) {
+            tail = null;
+        }
         size--;
         Node<E> temp = head;
         head = head.getNext();
@@ -77,19 +113,25 @@ public class MyLinkedList<E>
     public void addTail(E element) {
         size++;
         Node<E> newNode = new Node<E>(element);
-        Node<E> currNode = head;
+        // Node<E> currNode = head;
+        
+        // if (!isEmpty()) {
+            // while (currNode.getNext() != null) {
+                // currNode = currNode.getNext();
+            // }
+            // currNode.setNext(newNode);
+        // } else {
+            // head = newNode;
+        // }
         
         if (!isEmpty()) {
-            while (currNode.getNext() != null) {
-                currNode = currNode.getNext();
-            }
-            currNode.setNext(newNode);
+            tail.setNext(newNode);
+            tail = newNode;
         } else {
-            head = newNode;
+            tail = newNode;
+            head = tail;
         }
-
-        //tail.setNext(newNode);
-        //tail = newNode;
+        
     }
 
     /**

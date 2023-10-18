@@ -27,6 +27,10 @@ public class Node<E>
         next = nextNode;
     }
     
+    public void setData (E dataToStore) {
+        data = dataToStore;
+    }
+    
     /**
      * Returns the data stored in this node
      *
