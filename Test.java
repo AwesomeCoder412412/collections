@@ -9,6 +9,40 @@ import java.util.*;
  */
 public class Test
 {
+    public static double squareRoot(double input) {
+        int iter = 0;
+        double answer = input / 2;
+        while (!(answer * answer >= input - 0.0001 && answer * answer <= input)) {
+            if (answer * answer > input) {
+                answer /= 2;
+            } else {
+                answer = answer + (answer / 2);
+            }
+            iter++;
+        }
+        System.out.println(iter);
+        return answer;
+    }
+    
+    public static double squareRootImproved(double input) {
+        double answer = input / 2;
+        int iter = 0;
+        double min = 0;
+        double max = input;
+        while (!(answer * answer >= input - 0.0001 && answer * answer <= input)) {
+            if (answer * answer > input) {
+                max = answer;
+            } else {
+                min = answer;
+            }
+            answer = (min + max) / 2;
+            iter++;
+        }
+        System.out.println(iter);
+        return answer;
+    }
+    
+    
     public static void testArrayList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         arrayList.add(3);
