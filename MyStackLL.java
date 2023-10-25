@@ -5,7 +5,7 @@ import java.util.EmptyStackException;
  * @author Jack Segil
  * @version 1.0
  */
-public class MyStackLL<E>
+public class MyStackLL<E extends Comparable<E>>
 {
     private MyLinkedList<E> list;
 

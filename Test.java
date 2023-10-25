@@ -121,9 +121,30 @@ public class Test
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.addHead(1);
         list.addHead(2);
-        list.remove(1);
-        if (list.get(1) != 2) {
+        if (list.remove(1) == null) {
+            System.out.println("Failed remove index, is null");
+        }
+        if (list.get(0) != 2) {
            System.out.println("Failed get " + list.get(1));
+        }
+        list.addHead(3);
+        list.add(1, 4);
+        if (!list.toString().equals("3, 4, 2")) {
+            System.out.println("Failed add with index " + list.toString());
+        }
+        list.set(1, 9);
+        if (!list.toString().equals("3, 9, 2")) {
+            System.out.println("Failed set " + list.toString());
+        }
+        list.insertSorted(4);
+        if (!list.toString().equals("3, 4, 9, 2")) {
+            System.out.println("Failed insertSorted " + list.toString());
+        }
+        if (list.remove(new Integer(2)) == null) {
+            System.out.println("Failed remove element, is null");
+        }
+        if (!list.toString().equals("3, 4, 9")) {
+            System.out.println("Failed remove element " + list.toString());
         }
         
         MyStackLL<Integer> stack = new MyStackLL<Integer>();

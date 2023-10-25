@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
  * @author Jack Segil
  * @version 1.0
  */
-public class MyQueueLL<E>
+public class MyQueueLL<E extends Comparable<E>>
 {
     private MyLinkedList<E> list;
 

@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
  * @author Jack Segil
  * @version 1.0
  */
-public class MyLinkedList<E>
+public class MyLinkedList<E extends Comparable<E>>
 {
     private Node<E> head;
     private Node<E> tail;
@@ -44,15 +44,71 @@ public class MyLinkedList<E>
         
         Node<E> next = currNode.getNext();
         currNode.setNext(next.getNext());
+        E toReturn = next.getData();
         next.setData(null);
         next.setNext(null);
+        size--;
         if (size == 1) {
             tail = currNode;
             head = currNode;
         }
-        return next.getData();
+        return toReturn;
     }
-
+    
+    public E remove(E element) {
+        Node<E> currNode = head;
+        int index = 0;
+        
+        while (currNode != null && currNode.getData().compareTo(element) != 0) {
+            currNode = currNode.getNext();
+            index++;
+        }
+        if (currNode == null) {
+            return null;
+        }
+        return remove(index);
+    }
+    
+    public void add(int index, E element) throws NoSuchElementException{
+        Node<E> currNode = head;
+        Node<E> newNode = new Node<E>(element);        
+        if (index > size || index < 0) {
+            throw new NoSuchElementException();
+        }
+        for (int i = 0; i < index - 1; i++) {
+            currNode = currNode.getNext();
+        }
+        
+        size++;
+        if (size != 1) {
+            newNode.setNext(currNode.getNext());
+            currNode.setNext(newNode);
+        } else {
+            tail = newNode;
+            head = newNode;
+        }
+        
+    }
+    
+    public void add(E element) {
+        addTail(element);
+    }
+    
+    public void set(int index, E element) {
+        remove(index);
+        add(index, element);
+    }
+    
+    public void insertSorted(E element) {
+        Node<E> currNode = head;
+        int index = 0;
+        
+        while (currNode != null && currNode.getData().compareTo(element) < 0) {
+            currNode = currNode.getNext();
+            index++;
+        }
+        add(index, element);
+    }
 
     /**
      * Adds element to start of list.
