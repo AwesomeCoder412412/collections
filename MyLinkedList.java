@@ -33,25 +33,30 @@ public class MyLinkedList<E extends Comparable<E>>
     }
     
     public E remove(int index) throws NoSuchElementException{
-        Node<E> currNode = head;
-        
         if (index >= size || index < 0) {
             throw new NoSuchElementException();
         }
+        if (index == 0) {
+            return removeHead();
+        }
+        
+        Node<E> currNode = head;
+        
         for (int i = 0; i < index - 1; i++) {
             currNode = currNode.getNext();
         }
-        
         Node<E> next = currNode.getNext();
-        currNode.setNext(next.getNext());
+
+        if (index == size - 1) {
+            currNode.setNext(null);
+            tail = currNode;
+        } else {
+            currNode.setNext(next.getNext());
+        }
         E toReturn = next.getData();
         next.setData(null);
         next.setNext(null);
         size--;
-        if (size == 1) {
-            tail = currNode;
-            head = currNode;
-        }
         return toReturn;
     }
     
@@ -78,14 +83,14 @@ public class MyLinkedList<E extends Comparable<E>>
         for (int i = 0; i < index - 1; i++) {
             currNode = currNode.getNext();
         }
-        
-        size++;
-        if (size != 1) {
+        if (size == 0 || index == 0) {
+            addHead(element);
+        } else if (index == size) {
+            addTail(element);
+        } else {
+            size++;
             newNode.setNext(currNode.getNext());
             currNode.setNext(newNode);
-        } else {
-            tail = newNode;
-            head = newNode;
         }
         
     }
