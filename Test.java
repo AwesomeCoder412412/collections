@@ -166,6 +166,17 @@ public class Test
         if (!list.toString().equals("3, 9, 2")) {
             System.out.println("Failed set " + list.toString());
         }
+        list.set(0, 9);
+        if (!list.toString().equals("9, 9, 2")) {
+            System.out.println("Failed set " + list.toString());
+        }
+        list.set(0, 3);
+        list.set(2, 9);
+        if (!list.toString().equals("3, 9, 9")) {
+            System.out.println("Failed set " + list.toString());
+        }
+        list.set(2, 2);
+        
         list.insertSorted(4);
         if (!list.toString().equals("3, 4, 9, 2")) {
             System.out.println("Failed insertSorted " + list.toString());
