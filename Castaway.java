@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Castaway here.
+ * A Castaway from the show Gilligan's Island
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jack Segil
+ * @version 1.0
  */
 public class Castaway implements Comparable<Castaway>
 {
