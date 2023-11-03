@@ -23,6 +23,13 @@ public class Castaway implements Comparable<Castaway>
         gender = genderInit;
     }
     
+    /**
+     * Compares the first and last name.
+     *
+     * @param other castaway to compare
+     * @return a negative integer, zero, positive integer 
+     */
+    @Override
     public int compareTo(Castaway other) {
         if (lastName.equals(other.lastName)) {
             return firstName.compareTo(other.firstName);
@@ -31,10 +38,21 @@ public class Castaway implements Comparable<Castaway>
         }
     }
     
-    private boolean equals(Castaway other) {
+    /**
+     * Returns whether the first and last names are equal.
+     *
+     * @param other castaway to compare
+     * @return true if they're equal, false if they're not
+     */
+    public boolean equals(Castaway other) {
         return compareTo(other) == 0;
     }
     
+    /**
+     * Returns the first and last name of the castaway.
+     *
+     * @return the first and last name of the castaway
+     */
     public String toString() {
         return firstName + " " + lastName;
     }
