@@ -9,6 +9,7 @@ public class Node<E>
 {
     private E data;
     private Node<E> next;
+    private Node<E> prev;
     /**
      * Constructor for objects of class Node
      */
@@ -16,6 +17,7 @@ public class Node<E>
     {
         data = dataToStore;
         next = null;
+        prev = null;
     }
     
     /**
@@ -27,6 +29,15 @@ public class Node<E>
         next = nextNode;
     }
     
+    /**
+     * Sets the previous node.
+     *
+     * @param prevNode the next node in the list
+     */
+    public void setPrev(Node prevNode) {
+        prev = prevNode;
+    }
+    
     public void setData (E dataToStore) {
         data = dataToStore;
     }
@@ -34,7 +45,7 @@ public class Node<E>
     /**
      * Returns the data stored in this node
      *
-     * @return The data stored in this node
+     * @return the data stored in this node
      */
     public E getData() {
         return data;
@@ -47,6 +58,15 @@ public class Node<E>
      */
     public Node<E> getNext() {
         return next;
+    }
+    
+    /**
+     * Returns the previous node in the list
+     *
+     * @return the previous node in the list
+     */
+    public Node<E> getPrev() {
+        return prev;
     }
 
 }

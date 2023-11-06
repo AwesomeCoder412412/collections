@@ -133,6 +133,14 @@ public class Test
     }
     
     public static void testLL() {
+        MyLinkedList<Integer> list2 = new MyLinkedList<Integer>();
+        list2.addTail(1);
+        list2.addTail(3);
+        if (!list2.toString().equals("1, 3")) {
+            System.out.println("2: failed addTail" + list2.toString());
+        }
+        
+        
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.addHead(1);
         if (list.remove(0) != 1) {

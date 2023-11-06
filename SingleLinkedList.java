@@ -5,15 +5,15 @@ import java.util.NoSuchElementException;
  * @author Jack Segil
  * @version 1.0
  */
-public class MyLinkedList<E extends Comparable<E>>
+public class SingleLinkedList<E extends Comparable<E>>
 {
     private Node<E> head;
     private Node<E> tail;
     private int size;
     /**
-     * Constructor for objects of class MyLinkedList
+     * Constructor for objects of class SingleLinkedList
      */
-    public MyLinkedList()
+    public SingleLinkedList()
     {
         head = null;
         tail = null;
@@ -229,7 +229,6 @@ public class MyLinkedList<E extends Comparable<E>>
 
         if (!isEmpty()) {
             tail.setNext(newNode);
-            newNode.setPrev(tail);
             tail = newNode;
         } else {
             tail = newNode;
