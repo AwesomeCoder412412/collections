@@ -135,6 +135,10 @@ public class Test
     public static void testLL() {
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.addHead(1);
+        if (list.remove(0) != 1) {
+            System.out.println("Failed remove index");
+        }
+        list.addHead(1);
         list.addHead(2);
         if (list.remove(1) == null) {
             System.out.println("Failed remove index, is null");

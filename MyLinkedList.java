@@ -140,32 +140,13 @@ public class MyLinkedList<E extends Comparable<E>>
     public void set(int index, E element) throws NoSuchElementException {
         if (index >= size || index < 0) {
             throw new NoSuchElementException();
-        } else if (index == 0) {
-            removeHead();
-            addHead(element);
         } else {
-            Node<E> newNode = new Node<E>(element);   
             Node<E> currNode = head;
-            
-            for (int i = 0; i < index - 1; i++) {
+            for (int i = 0; i < index; i++) {
                 currNode = currNode.getNext();
             }
-            
-            Node<E> next = currNode.getNext();
-    
-            if (index == size - 1) {
-                tail = newNode;
-            } else {
-                newNode.setNext(next.getNext());
-            }
-            
-            currNode.setNext(newNode);
-            next.setData(null);
-            next.setNext(null);
+            currNode.setData(element);
         }
-        //lazy solution
-        //remove(index);
-        //add(index, element);
     }
 
     /**
@@ -216,6 +197,8 @@ public class MyLinkedList<E extends Comparable<E>>
         }
         size--;
         Node<E> temp = head;
+        
+        //Works whether last element or not
         head = head.getNext();
         temp.setNext(null);
         return temp.getData();
