@@ -139,6 +139,29 @@ public class Test
         if (!list2.toString().equals("1, 3")) {
             System.out.println("2: failed addTail" + list2.toString());
         }
+        list2 = new MyLinkedList<Integer>();
+        list2.addHead(2);
+        list2.addHead(1);
+        if (!list2.toString().equals("1, 2")) {
+            System.out.println("2: failed addHead" + list2.toString());
+        }
+        list2.removeHead();
+        if (!list2.toString().equals("2")) {
+            System.out.println("2: failed removeHead" + list2.toString());
+        }
+        list2.removeHead();
+        if (!list2.toString().equals("")) {
+            System.out.println("2: failed removeHead empty" + list2.toString());
+        }
+        list2.addHead(1);
+        list2.addHead(2);
+        list2.add(1, 3);
+        if (!list2.toString().equals("2, 3, 1")) {
+            System.out.println("2: failed add index" + list2.toString());
+        }
+        
+        
+        
         
         
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
