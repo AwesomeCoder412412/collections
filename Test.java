@@ -164,6 +164,8 @@ public class Test
         
         
         
+        
+        
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.addHead(1);
         if (list.remove(0) != 1) {
