@@ -184,7 +184,7 @@ public class MyLinkedList<E extends Comparable<E>>
     /**
      * Inserts element before first occurence of larger element in list.
      *
-     * @param element A parameter
+     * @param element a parameter
      */
     public void insertSorted(E element) {
         Node<E> nextNode = head;
@@ -218,8 +218,8 @@ public class MyLinkedList<E extends Comparable<E>>
      */
     public void addHead(E element) {
         size++;
-
         Node<E> newNode = new Node<E>(element);
+        
         if (size == 1) {
             tail = newNode;
         } else {
@@ -233,24 +233,25 @@ public class MyLinkedList<E extends Comparable<E>>
      * Removes and returns head element of list.
      *
      * @return head element
-     * 
-     * @throw NoSuchElementException if list is empty
+     * @throw NoSuch ElementException if list is empty
      */
     public E removeHead() throws NoSuchElementException {
         if (isEmpty()) {
             throw new NoSuchElementException();
-        }
-        size--;
-        Node<E> temp = head;
-        if (size == 0) {
-            tail = null;
-            head = null;
         } else {
-            head.getNext().setPrev(null);
-            head = head.getNext(); 
+            size--;
+            Node<E> temp = head;
+            
+            if (size == 0) {
+                tail = null;
+                head = null;
+            } else {
+                head.getNext().setPrev(null);
+                head = head.getNext(); 
+            }
+            temp.setNext(null);
+            return temp.getData();
         }
-        temp.setNext(null);
-        return temp.getData();
     }
 
     /**
@@ -263,8 +264,9 @@ public class MyLinkedList<E extends Comparable<E>>
     public E getHead() throws NoSuchElementException {
         if (isEmpty()) {
             throw new NoSuchElementException();
+        } else {
+            return head.getData();
         }
-        return head.getData();
     }
 
     /**
