@@ -139,7 +139,7 @@ public class MyLinkedList<E extends Comparable<E>>
         if (index > size || index < 0) {
             throw new NoSuchElementException();
         } else {
-            if (size == 0 || index == 0) {
+            if (index == 0) { // If it's empty, index will be 0
                 addHead(element);
             } else if (index == size) {
                 addTail(element);
@@ -195,7 +195,7 @@ public class MyLinkedList<E extends Comparable<E>>
             index++;
         }
 
-        if (size == 0 || index == 0) {
+        if (index == 0) { // If it's empty, index will be 0
             addHead(element);
         } else if (index == size) {
             addTail(element);
@@ -217,15 +217,15 @@ public class MyLinkedList<E extends Comparable<E>>
      * @param element element to be added
      */
     public void addHead(E element) {
-        size++;
         Node<E> newNode = new Node<E>(element);
         
-        if (size == 1) {
+        if (isEmpty()) { 
             tail = newNode;
         } else {
             newNode.setNext(head);
             head.setPrev(newNode);
         }
+        size++;
         head = newNode;
     }
 
@@ -239,16 +239,16 @@ public class MyLinkedList<E extends Comparable<E>>
         if (isEmpty()) {
             throw new NoSuchElementException();
         } else {
-            size--;
             Node<E> temp = head;
             
-            if (size == 0) {
+            if (size == 1) { // Removing only node
                 tail = null;
                 head = null;
-            } else {
+            } else { // Not last node
                 head.getNext().setPrev(null);
                 head = head.getNext(); 
             }
+            size--;
             temp.setNext(null);
             return temp.getData();
         }
