@@ -42,6 +42,12 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Searches for and return matching element, assumes that this node is the root node.
+     *
+     * @param element element to search for
+     * @return matching element
+     */
     public E search(E element) {
         if (element.compareTo(data) > 0) {
             if (rightChild == null) {
@@ -60,6 +66,11 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Returns the minimum element in BST, assumes that this node is the root node.
+     *
+     * @return the minimum element in BST
+     */
     public E getMin() {
         if (leftChild == null) {
             return data;
@@ -68,6 +79,11 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Returns the maximum element in BST, assumes that this node is the root node.
+     *
+     * @return the maximum element in BST
+     */
     public E getMax() {
         if (rightChild == null) {
             return data;
@@ -76,12 +92,20 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Returns the BST in ascending order, assumes that this node is the root node.
+     *
+     * @return the BST in ascending order
+     */
     public String toString() {
         String toReturn = "";
+        
         if (leftChild != null) {
             toReturn = leftChild.toString() + ", ";
         } 
+        
         toReturn = toReturn + data.toString();
+        
         if (rightChild != null) {
             toReturn = toReturn + ", " + rightChild.toString();
         }

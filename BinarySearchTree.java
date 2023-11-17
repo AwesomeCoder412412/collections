@@ -85,7 +85,7 @@ public class BinarySearchTree<E extends Comparable<E>>
     /**
      * Indicates whether BST is empty.
      *
-     * @return whether BST is empty
+     * @return whether BST is empty, otherwise false
      */
     public boolean isEmpty() {
         return size == 0;
