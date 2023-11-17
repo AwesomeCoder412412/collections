@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class BinarySearchTreeNode here.
+ * An implementation of a node of a Binary Search Tree.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jack Segil
+ * @version 1.0
  */
 public class BinarySearchTreeNode<E extends Comparable<E>>
 {
@@ -21,6 +21,11 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         data = element;
     }
     
+    /**
+     * Inserts element into the BST, assumes that this node is the root node
+     *
+     * @param element element to insert
+     */
     public void insert(E element) {
         if (element.compareTo(data) >= 0) {
             if (rightChild == null) {
