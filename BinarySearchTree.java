@@ -32,6 +32,17 @@ public class BinarySearchTree<E extends Comparable<E>>
         }
         size++;
     }
+    
+    public E remove(E element) {
+        if (search(element) == null) {
+            return null;
+        } else {
+            E toReturn = search(element);
+            root = root.remove(element);
+            size--;
+            return toReturn;
+        }
+    }
 
     /**
      * Searches for and return matching element.
@@ -89,6 +100,14 @@ public class BinarySearchTree<E extends Comparable<E>>
      */
     public boolean isEmpty() {
         return size == 0;
+    }
+    
+    public int getDepth() {
+        if (isEmpty()) {
+            return 0;
+        } else {
+            return root.getDepth();
+        }
     }
 
     /**

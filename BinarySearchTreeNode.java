@@ -42,6 +42,38 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         }
     }
     
+    // need remove max for duplicates
+    public BinarySearchTreeNode<E> remove(E element) {
+        if (element.compareTo(data) > 0) {
+            if (rightChild == null) {
+                return this;
+            } else {
+                rightChild = rightChild.remove(element);
+                return this;
+            }
+        } else if (element.compareTo(data) < 0) {
+            if (leftChild == null) {
+                return this;
+            } else {
+                leftChild = leftChild.remove(element);
+                return this;
+            }
+        } else {
+            if (leftChild == null && rightChild == null) {
+                return null;
+            } else if (rightChild == null) {
+                return leftChild;
+            } else if (leftChild == null) {
+                return rightChild;
+            } else {
+                E temp = leftChild.getMax();
+                remove(leftChild.getMax());
+                data = temp;
+                return this;
+            }
+        }
+    }
+    
     /**
      * Searches for and return matching element, assumes that this node is the root node.
      *
@@ -89,6 +121,22 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return data;
         } else {
             return rightChild.getMax();
+        }
+    }
+    
+    public int getDepth() {
+        if (leftChild == null && rightChild == null) {
+            return 1;
+        } else if (rightChild == null) {
+            return leftChild.getDepth() + 1;
+        } else if (leftChild == null) {
+            return rightChild.getDepth() + 1;
+        } else {
+            if (leftChild.getDepth() >= rightChild.getDepth()) {
+                return leftChild.getDepth() + 1;
+            } else {
+                return rightChild.getDepth() + 1;
+            }
         }
     }
     
