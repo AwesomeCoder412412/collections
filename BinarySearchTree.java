@@ -33,6 +33,12 @@ public class BinarySearchTree<E extends Comparable<E>>
         size++;
     }
     
+    /**
+     * Removes and returns matching element.
+     *
+     * @param element element to remove
+     * @return the matching element
+     */
     public E remove(E element) {
         if (search(element) == null) {
             return null;
@@ -102,6 +108,11 @@ public class BinarySearchTree<E extends Comparable<E>>
         return size == 0;
     }
     
+    /**
+     * Returns number of levels in BST.
+     *
+     * @return the number of levels in BST
+     */
     public int getDepth() {
         if (isEmpty()) {
             return 0;
@@ -111,15 +122,21 @@ public class BinarySearchTree<E extends Comparable<E>>
     }
 
     /**
-     * Returns the BST in ascending order.
+     * Returns elements in sorted order.
      *
-     * @return the BST in ascending order
+     * @return elements in sorted order
      */
     public String toString() {
         if (isEmpty()) {
             return "";
         } else {
             return root.toString();
+        }
+    }
+    
+    public void printTree(int i) {
+        if (!isEmpty()) {
+            root.printTree(i);
         }
     }
 }

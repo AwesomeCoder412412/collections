@@ -9,6 +9,18 @@ import java.util.*;
  */
 public class Test
 {
+    public static void testBST() {
+        Random rand = new Random();
+        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+        for (int i = 0; i < 10; i++) {
+            bst.insert(rand.nextInt(10));
+        }
+        bst.printTree(1);
+        bst.remove(3);
+        System.out.println("Divider");
+        bst.printTree(1);
+    }
+    
     public static void testWithArrayList() {
         ArrayList<Integer> aList = new ArrayList<Integer>();
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
