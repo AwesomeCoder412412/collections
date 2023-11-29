@@ -10,7 +10,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
     private BinarySearchTreeNode<E> leftChild;
     private BinarySearchTreeNode<E> rightChild;
     private E data;
-    
+
     /**
      * Constructor for objects of class BinarySearchTreeNode
      */
@@ -20,7 +20,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         rightChild = null;
         data = element;
     }
-    
+
     /**
      * Inserts element into this subtree.
      *
@@ -41,7 +41,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             }
         }
     }
-    
+
     /**
      * Removes matching element and returns the node that the parent should point to in order to 
      * reflect the update to the structure based on the removal.
@@ -81,7 +81,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             }
         }
     }
-    
+
     /**
      * Searches for and return matching element in this subtree.
      *
@@ -105,7 +105,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return data;
         }
     }
-    
+
     /**
      * Returns the minimum element in this subtree.
      *
@@ -118,7 +118,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return leftChild.getMin();
         }
     }
-    
+
     /**
      * Returns the maximum element in this subtree.
      *
@@ -131,7 +131,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return rightChild.getMax();
         }
     }
-    
+
     /**
      * Removes the minimum element in this subtree and returns the node that the parent should point to in order to 
      * reflect the update to the structure based on the removal.
@@ -147,7 +147,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return this;
         }
     }
-    
+
     /**
      * Returns the maximum element in this subtree and returns the node that the parent should point to in order to 
      * reflect the update to the structure based on the removal.
@@ -163,28 +163,26 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
             return this;
         }
     }
-    
+
     /**
      * Returns the number of levels of this subtree.
      *
      * @return the number of levels of this subtree
      */
     public int getDepth() {
-        if (leftChild == null && rightChild == null) {
-            return 1;
-        } else if (rightChild == null) {
-            return leftChild.getDepth() + 1;
-        } else if (leftChild == null) {
-            return rightChild.getDepth() + 1;
-        } else {
-            if (leftChild.getDepth() >= rightChild.getDepth()) {
-                return leftChild.getDepth() + 1;
-            } else {
-                return rightChild.getDepth() + 1;
-            }
+        int leftDepth = 0;
+        int rightDepth = 0;
+        
+        if (leftChild != null) {
+            leftDepth = leftChild.getDepth();
         }
+        if (rightChild != null) {
+            rightDepth = rightChild.getDepth();
+        }
+        
+        return Math.max(leftDepth, rightDepth) + 1;
     }
-    
+
     /**
      * Returns elements of this subtree in sorted order.
      *
@@ -192,20 +190,19 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      */
     public String toString() {
         String toReturn = "";
-        
+
         if (leftChild != null) {
             toReturn = leftChild.toString() + ", ";
         } 
-        
+
         toReturn = toReturn + data.toString();
-        
+
         if (rightChild != null) {
             toReturn = toReturn + ", " + rightChild.toString();
         }
         return toReturn;
     }
-    
-    
+
     
     /**
      * Prints elements as stored in the tree

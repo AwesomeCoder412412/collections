@@ -16,9 +16,7 @@ public class Test
             bst.insert(rand.nextInt(10));
         }
         bst.printTree(1);
-        bst.remove(3);
-        System.out.println("Divider");
-        bst.printTree(1);
+        System.out.println("Depth is " + bst.getDepth());
     }
     
     public static void testWithArrayList() {
