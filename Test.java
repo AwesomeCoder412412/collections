@@ -28,15 +28,19 @@ public class Test
         System.out.println(list.toString());
     }
     
-    public static void bstSort(MyLinkedList list) {
+    public static void bstSort(MyLinkedList<Integer> list) {
         // do this
-        BinarySearchTree bst = new BinarySearchTree();
+        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
         while (!list.isEmpty()) {
             bst.insert(list.removeHead());
         }
+        //System.out.println(bst.toString());
         while (!bst.isEmpty()) {
-            list.addTail(bst.removeMin());
-            System.out.println(bst.size());
+            bst.printTree(1);
+            //System.out.println("size " + bst.size());
+            int toAdd = bst.removeMin();
+            //System.out.println(toAdd);
+            list.addTail(toAdd);
         }
         
     }
