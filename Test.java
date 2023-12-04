@@ -19,6 +19,28 @@ public class Test
         System.out.println("Depth is " + bst.getDepth());
     }
     
+    public static void testBSTSort() {
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>();
+        list.add(3);
+        list.add(5);
+        list.add(0);
+        bstSort(list);
+        System.out.println(list.toString());
+    }
+    
+    public static void bstSort(MyLinkedList list) {
+        // do this
+        BinarySearchTree bst = new BinarySearchTree();
+        while (!list.isEmpty()) {
+            bst.insert(list.removeHead());
+        }
+        while (!bst.isEmpty()) {
+            list.addTail(bst.removeMin());
+            System.out.println(bst.size());
+        }
+        
+    }
+    
     public static void testWithArrayList() {
         ArrayList<Integer> aList = new ArrayList<Integer>();
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
