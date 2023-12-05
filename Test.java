@@ -36,11 +36,7 @@ public class Test
         }
         //System.out.println(bst.toString());
         while (!bst.isEmpty()) {
-            bst.printTree(1);
-            //System.out.println("size " + bst.size());
-            int toAdd = bst.removeMin();
-            //System.out.println(toAdd);
-            list.addTail(toAdd);
+            list.addTail(bst.removeMin());
         }
         
     }

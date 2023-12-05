@@ -139,10 +139,14 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      * @return the node that the parent should point to
      */
     public BinarySearchTreeNode<E> removeMin() {
-        if (leftChild == null) {
+        if (leftChild == null && rightChild == null) {
             data = null;
             return null;
-        } else {
+        } else if (leftChild == null) { //if there's a right child
+            data = null;
+            return rightChild;
+        }
+        else {
             leftChild = leftChild.removeMin();
             return this;
         }

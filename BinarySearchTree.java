@@ -101,7 +101,7 @@ public class BinarySearchTree<E extends Comparable<E>>
         } else {
             E toReturn = root.getMin();
             size--;
-            root.removeMin();
+            root = root.removeMin();
             return toReturn;
         }
     }
@@ -117,7 +117,7 @@ public class BinarySearchTree<E extends Comparable<E>>
         } else {
             E toReturn = root.getMax();
             size--;
-            root.removeMax();
+            root = root.removeMax();
             return toReturn;
         }
     }
