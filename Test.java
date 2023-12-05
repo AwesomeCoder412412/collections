@@ -12,13 +12,17 @@ public class Test
     public static void testBST() {
         Random rand = new Random();
         BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             bst.insert(rand.nextInt(10));
         }
         bst.printTree(1);
         System.out.println("Depth is " + bst.getDepth());
+        while (!bst.isEmpty()) {
+            System.out.println("removed: " + bst.removeMin());
+            bst.printTree(1);
+        }
     }
-    
+
     public static void testBSTSort() {
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         list.add(3);
@@ -27,7 +31,7 @@ public class Test
         bstSort(list);
         System.out.println(list.toString());
     }
-    
+
     public static void bstSort(MyLinkedList list) {
         BinarySearchTree bst = new BinarySearchTree();
         while (!list.isEmpty()) {
@@ -36,9 +40,9 @@ public class Test
         while (!bst.isEmpty()) {
             list.addTail(bst.removeMin());
         }
-        
+
     }
-    
+
     public static void testWithArrayList() {
         ArrayList<Integer> aList = new ArrayList<Integer>();
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
@@ -95,7 +99,7 @@ public class Test
         }
         System.out.println(aList.toString().equals("[" + list.toString() + "]") + " " + i + " " + head);
     }
-    
+
     public static void testCastaway() {
         String[] lastName = {"", "Grumby", "Howell", "Howell", "Grant", "Hinkley", "Summers"};
         String[] firstName = {"Gilligan", "Jonas", "Thurston", "Lovey", "Ginger", "Roy","Mary Ann"};
@@ -108,9 +112,9 @@ public class Test
         System.out.println(list.toString()); 
         System.out.println(list.remove(new Castaway(firstName[0], lastName[0], score[0], gender[0])));
         System.out.println(list.toString());
-        
+
     }
-    
+
     public static double squareRoot(double input) {
         int iter = 0;
         double answer = input / 2;
@@ -125,7 +129,7 @@ public class Test
         System.out.println(iter);
         return answer;
     }
-    
+
     public static double squareRootImproved(double input) {
         double answer = input / 2;
         int iter = 0;
@@ -143,14 +147,13 @@ public class Test
         System.out.println(iter);
         return answer;
     }
-    
-    
+
     public static void testArrayList() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         arrayList.add(3);
         arrayList.remove(0);
     }
-    
+
     public static void testIsBalanced() {
         if (!isBalanced("({[]})")) {
             System.out.println("Failed valid string");
@@ -159,7 +162,7 @@ public class Test
             System.out.println("Failed invalid string");
         }
     }
-    
+
     public static boolean isBalanced(String input) {
         MyStackLL<String> stack = new MyStackLL<String>();
         String openChars = "({[";
@@ -175,7 +178,7 @@ public class Test
         }
         return true;
     }
-    
+
     public static void reverse() {
         MyQueueLL<Integer> queue = new MyQueueLL<Integer>();
         MyStackLL<Integer> stack = new MyStackLL<Integer>();
@@ -193,7 +196,7 @@ public class Test
         }
         System.out.println(queue.toString());
     }
-    
+
     public static void testOtherThings() {
         MyLinkedList<Integer> list = new MyLinkedList<Integer>();
         if (!list.isEmpty()) {
@@ -218,7 +221,7 @@ public class Test
             System.out.println("Failed addTail " + list.toString());
         }
     }
-    
+
     public static void testLL() {
         MyLinkedList<Integer> list2 = new MyLinkedList<Integer>();
         list2.addTail(1);
@@ -246,10 +249,7 @@ public class Test
         if (!list2.toString().equals("2, 3, 1")) {
             System.out.println("2: failed add index" + list2.toString());
         }
-        
-        
-        
-        
+
         
         
         
@@ -264,7 +264,7 @@ public class Test
             System.out.println("Failed remove index, is null");
         }
         if (list.get(0) != 2) {
-           System.out.println("Failed get " + list.get(1));
+            System.out.println("Failed get " + list.get(1));
         }
         list.addHead(3);
         list.add(1, 4);
@@ -285,22 +285,20 @@ public class Test
         }
         list.remove(5);
         list.remove(4);
-        
-        
+
         if (list.remove(0) != 9) {
             System.out.println("Failed remove index " + list.toString());
         }
         if (!list.toString().equals("3, 4, 2")) {
             System.out.println("Failed remove index " + list.toString());
         }
-        
+
         list.add(3, 9);
         if (!list.toString().equals("3, 4, 2, 9")) {
             System.out.println("Failed add with index " + list.toString());
         }
         list.remove(3);
-        
-        
+
         list.set(1, 9);
         if (!list.toString().equals("3, 9, 2")) {
             System.out.println("Failed set " + list.toString());
@@ -315,7 +313,7 @@ public class Test
             System.out.println("Failed set " + list.toString());
         }
         list.set(2, 2);
-        
+
         list.insertSorted(4);
         if (!list.toString().equals("3, 4, 9, 2")) {
             System.out.println("Failed insertSorted " + list.toString());
@@ -337,8 +335,7 @@ public class Test
         if (!listSorted.toString().equals("-6, 0, 2, 6, 8, 9, 67")) {
             System.out.println("Failed insertSorted " + listSorted.toString());
         }
-        
-        
+
         
         MyStackLL<Integer> stack = new MyStackLL<Integer>();
         try {
@@ -372,7 +369,7 @@ public class Test
         if (!stack.toString().equals("4, 3, 2, 1")) {
             System.out.println("Failed toString " + stack.toString());
         }
-        
+
         MyQueueLL<Integer> queue = new MyQueueLL<Integer>();
         if (!queue.isEmpty()){
             System.out.println("Failed isEmpty");
@@ -395,13 +392,13 @@ public class Test
             System.out.println("Failed toString " + queue.toString());
         }
     }
-    
+
     public static void testAll() {
         MyStack<Integer> stack = new MyStack<Integer>();
         // try {
-            // stack.pop();
+        // stack.pop();
         // } catch (EmptyStackException e){
-            // System.out.println("Tried to pop from an empty stack");
+        // System.out.println("Tried to pop from an empty stack");
         // }
         if (!stack.isEmpty()){
             System.out.println("Failed isEmpty");
@@ -426,7 +423,7 @@ public class Test
         if (!stack.toString().equals("4, 3, 2, 1")) {
             System.out.println("Failed toString " + stack.toString());
         }
-        
+
         MyQueue<Integer> queue = new MyQueue<Integer>();
         if (!queue.isEmpty()){
             System.out.println("Failed isEmpty");
