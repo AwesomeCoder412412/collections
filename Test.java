@@ -28,13 +28,11 @@ public class Test
         System.out.println(list.toString());
     }
     
-    public static void bstSort(MyLinkedList<Integer> list) {
-        // do this
-        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+    public static void bstSort(MyLinkedList list) {
+        BinarySearchTree bst = new BinarySearchTree();
         while (!list.isEmpty()) {
             bst.insert(list.removeHead());
         }
-        //System.out.println(bst.toString());
         while (!bst.isEmpty()) {
             list.addTail(bst.removeMin());
         }

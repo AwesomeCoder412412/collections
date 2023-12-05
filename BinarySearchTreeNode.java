@@ -159,9 +159,12 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      * @return the node that the parent should point to
      */
     public BinarySearchTreeNode<E> removeMax() {
-        if (rightChild == null) {
+        if (rightChild == null && leftChild == null) {
             data = null;
             return null;
+        } else if (rightChild == null) { //if there's a left child
+            data = null;
+            return leftChild;
         } else {
             rightChild = rightChild.removeMax();
             return this;
