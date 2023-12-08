@@ -9,6 +9,15 @@ import java.util.*;
  */
 public class Test
 {
+    public static void testHeap() {
+        MyHeap<Integer> heap = new MyHeap<Integer>();
+        heap.add(1);
+        heap.add(2);
+        heap.add(4);
+        heap.add(3);
+        heap.printTree(1);
+    }
+    
     public static void testBST() {
         Random rand = new Random();
         BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
