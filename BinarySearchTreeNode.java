@@ -76,7 +76,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
                 return rightChild;
             } else {
                 data = leftChild.getMax();
-                leftChild.removeMax();
+                leftChild = leftChild.removeMax();
                 return this;
             }
         }
