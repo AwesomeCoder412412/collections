@@ -76,7 +76,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
                 return rightChild;
             } else {
                 data = leftChild.getMax();
-                leftChild = leftChild.removeMax();
+                leftChild.removeMax();
                 return this;
             }
         }
@@ -139,10 +139,14 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      * @return the node that the parent should point to
      */
     public BinarySearchTreeNode<E> removeMin() {
-        if (leftChild == null) {
+        if (leftChild == null && rightChild == null) {
             data = null;
             return null;
-        } else {
+        } else if (leftChild == null) { //if there's a right child
+            data = null;
+            return rightChild;
+        }
+        else {
             leftChild = leftChild.removeMin();
             return this;
         }
@@ -155,9 +159,12 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
      * @return the node that the parent should point to
      */
     public BinarySearchTreeNode<E> removeMax() {
-        if (rightChild == null) {
+        if (rightChild == null && leftChild == null) {
             data = null;
             return null;
+        } else if (rightChild == null) { //if there's a left child
+            data = null;
+            return leftChild;
         } else {
             rightChild = rightChild.removeMax();
             return this;
