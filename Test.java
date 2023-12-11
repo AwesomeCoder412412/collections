@@ -10,11 +10,13 @@ import java.util.*;
 public class Test
 {
     public static void testHeap() {
+        Random rand = new Random();
         MyHeap<Integer> heap = new MyHeap<Integer>();
-        heap.add(1);
-        heap.add(2);
-        heap.add(4);
-        heap.add(3);
+        for (int i = 0; i < 9; i++) {
+            heap.add(rand.nextInt(10));
+        }
+        heap.printTree(2);
+        heap.removeMin();
         heap.printTree(1);
     }
     

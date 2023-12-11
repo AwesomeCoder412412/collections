@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class MyHeap here.
  *
@@ -9,17 +9,24 @@ public class MyHeap<E extends Comparable<E>>
 {
     private E[] elemArray;
     private int lastNode;
+    private int maxSize;
     
     /**
      * Constructor for objects of class MyHeap
      */
     public MyHeap()
     {
-        elemArray = (E[]) new Comparable[16];
+        elemArray = (E[]) new Comparable[1];
+        maxSize = 1;
         lastNode = -1;
     }
     
     public void add(E element) {
+        if (lastNode == maxSize - 1) {
+            elemArray = Arrays.copyOf(elemArray, maxSize * 2);
+            maxSize *= 2;
+        }
+        
         lastNode++;
         elemArray[lastNode] = element;
         int childPos = lastNode;
@@ -28,6 +35,7 @@ public class MyHeap<E extends Comparable<E>>
             E temp = elemArray[childPos];
             elemArray[childPos] = elemArray[(childPos - 1) / 2];
             elemArray[(childPos - 1) / 2] = temp;
+            childPos = (childPos - 1) / 2;
         }
     }
     
@@ -40,48 +48,44 @@ public class MyHeap<E extends Comparable<E>>
         elemArray[0] = elemArray[lastNode];
         elemArray[lastNode] = null;
         int parentPos = 0;
+        int leftChildIndex = (parentPos * 2) + 1; 
+        int rightChildIndex = (parentPos * 2) + 2;
         lastNode--;
         // while not at the parent of where we're going to put this(which is the last node)
-        while ((parentPos * 2) + 1 < lastNode && (parentPos * 2) + 2 < lastNode) {
+        while ((parentPos * 2) + 2 <= lastNode) {
             E temp = elemArray[parentPos];
-            if (elemArray[(parentPos * 2) + 1].compareTo(elemArray[(parentPos * 2) + 2]) < 0) {
-                elemArray[parentPos] = elemArray[(parentPos * 2) + 1];
-                elemArray[(parentPos * 2) + 1] = temp;
-                parentPos = (parentPos * 2) + 1;
+            if (elemArray[leftChildIndex].compareTo(elemArray[rightChildIndex]) < 0) {
+                elemArray[parentPos] = elemArray[leftChildIndex];
+                elemArray[leftChildIndex] = temp;
+                parentPos = leftChildIndex;
             } else {
-                elemArray[parentPos] = elemArray[(parentPos * 2) + 2];
-                elemArray[(parentPos * 2) + 2] = temp;
-                parentPos = (parentPos * 2) + 2;
+                elemArray[parentPos] = elemArray[rightChildIndex];
+                elemArray[rightChildIndex] = temp;
+                parentPos = rightChildIndex;
             }
+            leftChildIndex = (parentPos * 2) + 1; 
+            rightChildIndex = (parentPos * 2) + 2; 
         }
-        
-        if (elemArray[(parentPos * 2) + 2] != null) {
-            if (elemArray[(parentPos * 2) + 1].compareTo(elemArray[(parentPos * 2) + 2]) < 0) {
+        E temp = elemArray[parentPos];
+        if (leftChildIndex <= lastNode && elemArray[leftChildIndex] != null) {
                 elemArray[parentPos] = elemArray[(parentPos * 2) + 1];
                 elemArray[(parentPos * 2) + 1] = temp;
                 parentPos = (parentPos * 2) + 1;
-            } else {
-                elemArray[parentPos] = elemArray[(parentPos * 2) + 2];
-                elemArray[(parentPos * 2) + 2] = temp;
-                parentPos = (parentPos * 2) + 2;
-            }
-        } else if (elemArray[(parentPos * 2) + 1] != null) {
-            
         }
         
         return toReturn;
     }
     
     public boolean isEmpty() {
-        return false;
+        return size() == 0;
     }
     
     public int size() {
-        return 0;
+        return lastNode + 1;
     }
     
     public String toString() {
-        return null;
+        return Arrays.toString(elemArray);
     }
     
     /**
