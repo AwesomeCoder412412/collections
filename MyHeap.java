@@ -1,9 +1,9 @@
 import java.util.*;
 /**
- * Write a description of class MyHeap here.
+ * An implementation of a heap.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jack Segil
+ * @version 1.0
  */
 public class MyHeap<E extends Comparable<E>>
 {
@@ -21,6 +21,11 @@ public class MyHeap<E extends Comparable<E>>
         lastNode = -1;
     }
     
+    /**
+     * Adds element to heap.
+     *
+     * @param element element to add
+     */
     public void add(E element) {
         if (lastNode == maxSize - 1) {
             elemArray = Arrays.copyOf(elemArray, maxSize * 2);
@@ -39,10 +44,20 @@ public class MyHeap<E extends Comparable<E>>
         }
     }
     
+    /**
+     * Gets minimum element from heap.
+     *
+     * @return minimum element from heap
+     */
     public E getMin() {
         return elemArray[0];
     }
     
+    /**
+     * Removes and returns minimum element from heap.
+     *
+     * @return minimum element from heap
+     */
     public E removeMin() {
         E toReturn = getMin();
         elemArray[0] = elemArray[lastNode];
@@ -51,10 +66,10 @@ public class MyHeap<E extends Comparable<E>>
         int leftChildIndex = (parentPos * 2) + 1; 
         int rightChildIndex = (parentPos * 2) + 2;
         lastNode--;
-        // while not at the parent of where we're going to put this(which is the last node)
-        while ((parentPos * 2) + 2 <= lastNode) {
+        
+        while (rightChildIndex <= lastNode) {
             E temp = elemArray[parentPos];
-            if (elemArray[leftChildIndex].compareTo(elemArray[rightChildIndex]) < 0) {
+            if (elemArray[leftChildIndex].compareTo(elemArray[rightChildIndex]) <= 0) {
                 elemArray[parentPos] = elemArray[leftChildIndex];
                 elemArray[leftChildIndex] = temp;
                 parentPos = leftChildIndex;
@@ -66,24 +81,43 @@ public class MyHeap<E extends Comparable<E>>
             leftChildIndex = (parentPos * 2) + 1; 
             rightChildIndex = (parentPos * 2) + 2; 
         }
+        
         E temp = elemArray[parentPos];
+        
         if (leftChildIndex <= lastNode && elemArray[leftChildIndex] != null) {
-                elemArray[parentPos] = elemArray[(parentPos * 2) + 1];
-                elemArray[(parentPos * 2) + 1] = temp;
-                parentPos = (parentPos * 2) + 1;
+            if (elemArray[parentPos].compareTo(elemArray[leftChildIndex]) > 0) { // isn't guaranteed that the trickle node is > leaf node
+                elemArray[parentPos] = elemArray[leftChildIndex];
+                elemArray[leftChildIndex] = temp;
+                parentPos = leftChildIndex;
+            }
         }
         
         return toReturn;
     }
     
+    /**
+     * Indicates whether heap is empty.
+     *
+     * @return whether heap is empty, otherwise false
+     */
     public boolean isEmpty() {
         return size() == 0;
     }
     
+    /**
+     * Returns number of elements in heap.
+     *
+     * @return number of elements in heap
+     */
     public int size() {
         return lastNode + 1;
     }
     
+    /**
+     * Returns the contents of the heap for testing purposes.
+     *
+     * @return contents of the heap
+     */
     public String toString() {
         return Arrays.toString(elemArray);
     }

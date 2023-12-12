@@ -11,13 +11,20 @@ public class Test
 {
     public static void testHeap() {
         Random rand = new Random();
+        rand.setSeed(4);
         MyHeap<Integer> heap = new MyHeap<Integer>();
         for (int i = 0; i < 9; i++) {
             heap.add(rand.nextInt(10));
         }
         heap.printTree(2);
         heap.removeMin();
-        heap.printTree(1);
+        heap.printTree(2);
+        heap.removeMin();
+        heap.printTree(2);
+        heap.removeMin();
+        heap.printTree(2);
+        heap.removeMin();
+        heap.printTree(2);
     }
     
     public static void testBST() {
