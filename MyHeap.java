@@ -10,7 +10,7 @@ public class MyHeap<E extends Comparable<E>>
     private E[] elemArray;
     private int lastNode;
     private int maxSize;
-    
+
     /**
      * Constructor for objects of class MyHeap
      */
@@ -20,7 +20,7 @@ public class MyHeap<E extends Comparable<E>>
         maxSize = 1;
         lastNode = -1;
     }
-    
+
     /**
      * Adds element to heap.
      *
@@ -31,11 +31,11 @@ public class MyHeap<E extends Comparable<E>>
             elemArray = Arrays.copyOf(elemArray, maxSize * 2);
             maxSize *= 2;
         }
-        
+
         lastNode++;
         elemArray[lastNode] = element;
         int childPos = lastNode;
-        
+
         while (childPos != 0 && elemArray[(childPos - 1) / 2].compareTo(elemArray[childPos]) > 0) {
             E temp = elemArray[childPos];
             elemArray[childPos] = elemArray[(childPos - 1) / 2];
@@ -43,7 +43,7 @@ public class MyHeap<E extends Comparable<E>>
             childPos = (childPos - 1) / 2;
         }
     }
-    
+
     /**
      * Gets minimum element from heap.
      *
@@ -52,7 +52,7 @@ public class MyHeap<E extends Comparable<E>>
     public E getMin() {
         return elemArray[0];
     }
-    
+
     /**
      * Removes and returns minimum element from heap.
      *
@@ -66,9 +66,11 @@ public class MyHeap<E extends Comparable<E>>
         int leftChildIndex = (parentPos * 2) + 1; 
         int rightChildIndex = (parentPos * 2) + 2;
         lastNode--;
-        
-        while (rightChildIndex <= lastNode) {
+
+        while (leftChildIndex <= lastNode && rightChildIndex <= lastNode + 1 && elemArray[leftChildIndex] != null && elemArray[rightChildIndex] != null
+                && (elemArray[parentPos].compareTo(elemArray[leftChildIndex]) > 0 || elemArray[parentPos].compareTo(elemArray[rightChildIndex]) > 0)) {
             E temp = elemArray[parentPos];
+            
             if (elemArray[leftChildIndex].compareTo(elemArray[rightChildIndex]) <= 0) {
                 elemArray[parentPos] = elemArray[leftChildIndex];
                 elemArray[leftChildIndex] = temp;
@@ -78,23 +80,14 @@ public class MyHeap<E extends Comparable<E>>
                 elemArray[rightChildIndex] = temp;
                 parentPos = rightChildIndex;
             }
+            
             leftChildIndex = (parentPos * 2) + 1; 
             rightChildIndex = (parentPos * 2) + 2; 
         }
         
-        E temp = elemArray[parentPos];
-        
-        if (leftChildIndex <= lastNode && elemArray[leftChildIndex] != null) {
-            if (elemArray[parentPos].compareTo(elemArray[leftChildIndex]) > 0) { // isn't guaranteed that the trickle node is > leaf node
-                elemArray[parentPos] = elemArray[leftChildIndex];
-                elemArray[leftChildIndex] = temp;
-                parentPos = leftChildIndex;
-            }
-        }
-        
         return toReturn;
     }
-    
+
     /**
      * Indicates whether heap is empty.
      *
@@ -103,7 +96,7 @@ public class MyHeap<E extends Comparable<E>>
     public boolean isEmpty() {
         return size() == 0;
     }
-    
+
     /**
      * Returns number of elements in heap.
      *
@@ -112,7 +105,7 @@ public class MyHeap<E extends Comparable<E>>
     public int size() {
         return lastNode + 1;
     }
-    
+
     /**
      * Returns the contents of the heap for testing purposes.
      *
@@ -121,7 +114,7 @@ public class MyHeap<E extends Comparable<E>>
     public String toString() {
         return Arrays.toString(elemArray);
     }
-    
+
     /**
      * Prints elements as stored in the tree
      *
@@ -206,5 +199,5 @@ public class MyHeap<E extends Comparable<E>>
             elements[i] = elemArray[i].toString();
         }
     }
-    
+
 }
