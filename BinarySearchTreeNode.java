@@ -145,8 +145,7 @@ public class BinarySearchTreeNode<E extends Comparable<E>>
         } else if (leftChild == null) { //if there's a right child
             data = null;
             return rightChild;
-        }
-        else {
+        } else {
             leftChild = leftChild.removeMin();
             return this;
         }
